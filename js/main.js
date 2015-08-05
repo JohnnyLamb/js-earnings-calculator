@@ -36,15 +36,15 @@ $(document).on('ready', function() {
 
         totalTip += tip ;
 
-        averageTip = tip/ count;
+        averageTip = tip / count;
 
         // APPEND TO TOTAL CHARGES
 
-    $('#totalcharges > p:last-child').append(" " + total + " should be the total.");
+    $('#total').html(" " + total + " should be the total.");
 
-    $('#totalcharges > p:nth-child(2)').append(" " + tip + " should be how much you tip.");
+    $('#tip').html(" " + tip + " should be how much you tip.");
 
-    $('#totalcharges > p:first-child').append(" " + subtotal + " should be subtotal.");
+    $('#sub').html(" " + subtotal + " should be subtotal.");
 // to append to TOTAL EARNINGS
 
 
@@ -59,11 +59,12 @@ $(document).on('ready', function() {
 
 
   $('input[type="button"]').on('click', function(event){
-    event.preventDefault();
+
 
     console.log("time to reset");
-
-    $('form').trigger("reset");
+    console.log($('span').not('.small'));
+    $('span').not('.small').html('');
+    meals = [];
 
   });
 
