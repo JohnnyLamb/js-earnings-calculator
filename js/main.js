@@ -29,7 +29,7 @@ $(document).on('ready', function() {
 
     var subtotal = answers[0];
 
-
+//  grab lines 34 - 39 and put them in a utility function, also when clicking reset button we need to reset the total earnings values
 
         meals.push(total);
         var count = meals.length;
