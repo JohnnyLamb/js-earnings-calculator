@@ -1,13 +1,26 @@
-var helperMath = function(mealPrice,taxRate,tipPercent){
+var helperMath = function(mealPrice, taxRate, tipPercent) {
 
 
-    var subTotal = (mealPrice * taxRate) + mealPrice;
+  mealPrice = parseFloat(mealPrice);
 
-    var tipAmount = (subTotal * tipPercent);
+  taxRate = parseFloat(taxRate);
 
-    var total = tipAmount + subTotal;
+  tipPercent = parseFloat(tipPercent);
 
-    return subTotal, tipAmount, total;
+
+  console.log(tipPercent);
+
+  var subTotal = ((mealPrice * taxRate) + mealPrice);
+
+
+  var tipAmount = (subTotal * tipPercent).toFixed(2);
+  tipAmount = parseFloat(tipAmount);
+
+
+  var total = tipAmount + subTotal;
+
+  var answers = [subTotal, tipAmount, total];
+
+  return answers;
 
 };
-

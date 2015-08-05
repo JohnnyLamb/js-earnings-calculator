@@ -2,38 +2,69 @@
 
 $(document).on('ready', function() {
 
+    var totalTip = 0;
+    var averageTip = 0;
+    var meals = [];
 
   $('input[type="submit"]').on('click', function(event){
     event.preventDefault();
 
-    var $mealPrice = $('input[name="meal-price"]').val();
-    console.log($mealPrice);
-    var $taxRate = $('input[name="meal-taxrate"]').val();
-    console.log($taxRate);
-    var $tipPercent = $('input[name="meal-tiprate"]').val();
-    console.log($tipPercent);
+    var mealPrice = $('input[name="meal-price"]').val();
+    console.log(mealPrice);
+
+    var taxRate = $('input[name="meal-taxrate"]').val();
+    console.log(taxRate);
+
+    var tipPercent = $('input[name="meal-tiprate"]').val();
+    console.log(tipPercent);
     $('form').trigger("reset");
 
 
-    helperMath($mealPrice,$taxRate,$tipPercent);
 
-    $('#totalcharges > p:last-child').append(" " + total + " should be how much you tip.");
+    var answers = helperMath(mealPrice,taxRate,tipPercent);
 
-    $('#totalcharges > p:nth-child(2)').append(" " + tipAmount + " should be how much you tip.");
+    var total = answers[2];
 
-    $('#totalcharges > p:first-child').append(" " + subTotal + " should be how much you tip.");
+    var tip = answers[1];
+
+    var subtotal = answers[0];
+
+
+
+        meals.push(total);
+        var count = meals.length;
+
+        totalTip += tip ;
+
+        averageTip = tip/ count;
+
+        // APPEND TO TOTAL CHARGES
+
+    $('#totalcharges > p:last-child').append(" " + total + " should be the total.");
+
+    $('#totalcharges > p:nth-child(2)').append(" " + tip + " should be how much you tip.");
+
+    $('#totalcharges > p:first-child').append(" " + subtotal + " should be subtotal.");
+// to append to TOTAL EARNINGS
+
+
+    $('#tips').html(" " + totalTip + " should be all tips.");
+
+    $('#meals').html(" " + count + " should be number of meals.");
+
+    $('#average').html(" " + averageTip + " should be average tip.");
 
 
   });
 
 
-//   $('input[type="button"]').on('click', function(event){
-//     event.preventDefault();
+  $('input[type="button"]').on('click', function(event){
+    event.preventDefault();
 
-//     console.log("time to reset");
+    console.log("time to reset");
 
-//     $('form').trigger("reset");
+    $('form').trigger("reset");
 
-//   });
+  });
 
 });
