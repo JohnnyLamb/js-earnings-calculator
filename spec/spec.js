@@ -1,8 +1,13 @@
-var code = require('../js/main.js');
+var Prices = require('../js/utility.js');
 
 
-// describe('', function() {
-//   it('', function() {
+beforeEach(function(){
+  var meal = new Prices("20","0.1","0.2");
+});
 
-//   });
-// });
+describe('#subTotal', function() {
+  it('calculates the subtotal', function() {
+
+    expect(meal.subTotal()).toEqual(110);
+  });
+});

@@ -14,8 +14,8 @@ $(document).on('ready', function() {
     var taxRate = $('input[name="meal-taxrate"]').val();
     console.log(taxRate);
 
+    // clear button
     var tipPercent = $('input[name="meal-tiprate"]').val();
-    console.log(tipPercent);
     $('form').trigger("reset");
 
     var myMeal = new Prices(mealPrice,taxRate,tipPercent);
@@ -42,14 +42,11 @@ $(document).on('ready', function() {
     $('#meals').html(" " + count + " should be number of meals.");
 
     $('#average').html(" " + averageTip.toFixed(2) + " should be average tip.");
-
   });
-
+// to reset the screen
   $('input[type="button"]').on('click', function(event){
 
     $('span').not('.small').html('');
     meals = [];
-
   });
-
 });

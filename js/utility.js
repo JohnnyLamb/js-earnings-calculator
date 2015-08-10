@@ -19,3 +19,6 @@ Prices.prototype.total = function(){
   this.tipAmount = parseFloat(this.tipAmount());
   return this.tipAmount + this.subTotal();
 };
+
+
+module.exports = Prices
