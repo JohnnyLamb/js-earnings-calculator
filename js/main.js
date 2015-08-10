@@ -1,7 +1,6 @@
 // add scripts
 
 $(document).on('ready', function() {
-
     var totalTip = 0;
     var averageTip = 0;
     var meals = [];
@@ -19,50 +18,35 @@ $(document).on('ready', function() {
     console.log(tipPercent);
     $('form').trigger("reset");
 
+    var myMeal = new Prices(mealPrice,taxRate,tipPercent);
 
-
-    var answers = helperMath(mealPrice,taxRate,tipPercent);
-
-    var total = answers[2];
-
-    var tip = answers[1];
-
-    var subtotal = answers[0];
-
-//  grab lines 34 - 39 and put them in a utility function, also when clicking reset button we need to reset the total earnings values
-
+        // this is for counting how many meals
         meals.push(total);
         var count = meals.length;
 
-        totalTip += tip ;
+        totalTip += parseFloat(myMeal.tipAmount().toFixed(2));
 
-        averageTip = tip / count;
+        averageTip = myMeal.tipAmount() / count;
 
         // APPEND TO TOTAL CHARGES
 
-    $('#total').html(" " + total + " should be the total.");
+    $('#total').html(" " + myMeal.total() + " should be the total.");
 
-    $('#tip').html(" " + tip + " should be how much you tip.");
+    $('#tip').html(" " + myMeal.tipAmount.toFixed(2) + " should be how much you tip.");
 
-    $('#sub').html(" " + subtotal + " should be subtotal.");
+    $('#sub').html(" " + myMeal.subTotal() + " should be subtotal.");
 // to append to TOTAL EARNINGS
-
 
     $('#tips').html(" " + totalTip + " should be all tips.");
 
     $('#meals').html(" " + count + " should be number of meals.");
 
-    $('#average').html(" " + averageTip + " should be average tip.");
-
+    $('#average').html(" " + averageTip.toFixed(2) + " should be average tip.");
 
   });
 
-
   $('input[type="button"]').on('click', function(event){
 
-
-    console.log("time to reset");
-    console.log($('span').not('.small'));
     $('span').not('.small').html('');
     meals = [];
 

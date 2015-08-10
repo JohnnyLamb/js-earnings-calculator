@@ -1,26 +1,21 @@
-var helperMath = function(mealPrice, taxRate, tipPercent) {
 
+var Prices = function(mealPrice,taxRate,tipPercent){
+  this.mealPrice = parseFloat(mealPrice);
+  this.taxRate = parseFloat(taxRate);
+  this.tipPercent = parseFloat(tipPercent);
+};
 
-  mealPrice = parseFloat(mealPrice);
+Prices.prototype.subTotal = function(){
+  return ((this.mealPrice * this.taxRate) + this.mealPrice);
+};
 
-  taxRate = parseFloat(taxRate);
+Prices.prototype.tipAmount = function(){
 
-  tipPercent = parseFloat(tipPercent);
+  return (this.subTotal() * this.tipPercent);
 
+};
 
-  console.log(tipPercent);
-
-  var subTotal = ((mealPrice * taxRate) + mealPrice);
-
-
-  var tipAmount = (subTotal * tipPercent).toFixed(2);
-  tipAmount = parseFloat(tipAmount);
-
-
-  var total = tipAmount + subTotal;
-
-  var answers = [subTotal, tipAmount, total];
-
-  return answers;
-
+Prices.prototype.total = function(){
+  this.tipAmount = parseFloat(this.tipAmount());
+  return this.tipAmount + this.subTotal();
 };
